@@ -9,6 +9,44 @@ const output = document.querySelector('#output');
 // skapar arrayen /listan
 const users = []
 
+// här tänker jag att sjävla valideringen är
+
+
+const validate = (id) => {
+    const input = document.querySelector(id + 'error');
+    
+    if(input.value.trim() ==='') {
+        error.innerText = 'please enter'
+        input.focus();
+        return false;
+    } 
+    else if(input.value.length < 2) {
+        error.innerText = 'please enter'
+        input.focus();
+        return false;
+    }
+    else {
+        error.innerText = ''
+        return true;
+    }
+}
+
+const validatefirstName = () => {
+    const firstName = document.querySelector('#firstName');
+    const firstNameError = document.querySelector('#firtName-error');
+
+    if(firstName.value=== '') {
+        firstNameError.innerText = 'du måste ange ett förnamn'
+    }
+}
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    validatefirstName();
+  
+})
+
 class User {
     constructor(firstName, lastName, email) {
         this.firstName = firstName;
