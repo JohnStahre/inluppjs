@@ -1,5 +1,5 @@
 const form = document.querySelector('#form');
-const firstName = document.querySelector('#firstName');
+const firstName = document.getElementById('firstName');
 const lastName = document.querySelector('#lastName');
 const email = document.querySelector('#email');
 const imputs = document.querySelector('#input');
@@ -12,38 +12,59 @@ const users = []
 // här tänker jag att sjävla valideringen är
 
 
-const validate = (id) => {
-    const input = document.querySelector(id + 'error');
+// const validate = (id) => {
+//     const input = document.querySelector(id + 'error');
     
-    if(input.value.trim() ==='') {
-        error.innerText = 'please enter'
-        input.focus();
-        return false;
-    } 
-    else if(input.value.length < 2) {
-        error.innerText = 'please enter'
-        input.focus();
-        return false;
-    }
-    else {
-        error.innerText = ''
-        return true;
-    }
-}
+//     if(input.value.trim() ==='') {
+//         error.innerText = 'please enter'
+//         input.focus();
+//         return false;
+//     } 
+//     else if(input.value.length < 2) {
+//         error.innerText = 'please enter'
+//         input.focus();
+//         return false;
+//     }
+//     else {
+//         error.innerText = ''
+//         return true;
+//     }
+// }
 
 const validatefirstName = () => {
-    const firstName = document.querySelector('#firstName');
-    const firstNameError = document.querySelector('#firtName-error');
+    const firstName = document.getElementById('firstName');
+    const firstNameError = document.getElementById('firstName-error');
 
-    if(firstName.value=== '') {
-        firstNameError.innerText = 'du måste ange ett förnamn'
+    if(firstName.value=== ''|| firstName.value.length<2) {
+        firstNameError.textContent = 'du måste ange ett förnamn'
     }
 }
+
+const validatelastName = () => {
+    const lastName = document.getElementById('lastName');
+    const lastNameError = document.getElementById('lastName-error');
+
+    if(lastName.value=== ''|| lastName.value.length<2) {
+        lastNameError.textContent = 'du måste ange ett efternamn'
+    }
+}
+
+const validateemail = () => {
+    const email = document.getElementById('email');
+    const emailError = document.getElementById('email-error');
+
+    if(email.value=== ''|| email.value.length<2) {
+        emailError.textContent = 'ange giltig email mer än 2 bokstäver inkulsive @'
+    }
+}
+
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     validatefirstName();
+    validatelastName();
+    validateemail();
   
 })
 
