@@ -44,7 +44,7 @@ const validatelastName = () => {
     const lastName = document.getElementById('lastName');
     const lastNameError = document.getElementById('lastName-error');
 
-    if(lastName.value=== ''|| lastName.value.length<2) {
+    if(lastName.value.trim()=== ''|| lastName.value.length<2) {
         lastNameError.textContent = 'du måste ange ett efternamn'
     }
 }
@@ -57,6 +57,21 @@ const validateemail = () => {
         emailError.textContent = 'ange giltig email mer än 2 bokstäver inkulsive @'
     }
 }
+
+const validateEmail = (input) => {
+    let regEx = /^\w+@[a-zA-Z]+?\.[a-zA-Z-]{2,}$/
+  
+    if(input.value.trim() === '') {
+      setError(input, 'Email address cannot be empty')
+      return false;
+    } else if (!regEx.test(input.value)) {
+      setError(input, 'Email address is not valid')
+      return false;
+    } else {
+      setSuccess(input)
+      return true;
+    }
+  }
 
 
 form.addEventListener('submit', (e) => {
