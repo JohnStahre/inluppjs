@@ -30,6 +30,34 @@ const validatelastName = () => {
     }
 }
 
+// const validateemail = () => {
+//     const email = document.getElementById('email');
+//     const emailError = document.getElementById('email-error');
+
+//     if(email.value.length<2) {
+//         emailError.textContent = ('ange giltig email mer än 2 bokstäver inkulsive @')
+//         return false;
+//     }
+//     // else if (email.value.includes('ö'&&'ä'&&'å')) {  
+//     //     emailError.textContent = ('inte åäö')
+//     //     return false;
+        
+//     // }
+//     else if (email.value.includes('@')){
+//         return true;
+//     }
+   
+//     else{
+//         emailError.textContent='måste innehålla @ men inte åäö'
+//     }
+
+//     var bannedCharacters = ['å','ä','ö']
+
+//     if (bannedCharacters.some(x=> email.value.includes(x))) {
+//         emailError.textContent = ('inte åäö')
+//         // return false;
+//     }
+    
 const validateemail = () => {
     const email = document.getElementById('email');
     const emailError = document.getElementById('email-error');
@@ -38,28 +66,22 @@ const validateemail = () => {
         emailError.textContent = ('ange giltig email mer än 2 bokstäver inkulsive @')
         return false;
     }
-    else if (email.value.includes('ö'&&'ä'&&'å')) {  
-        emailError.textContent = ('inte åäö')
+  
+    if (!email.value.includes('@')){
+        emailError.textContent='måste innehålla @'
         return false;
-        
     }
-    else if (email.value.includes('@')){
-        return true;
-    }
-   
-    else{
-        emailError.textContent='måste innehålla @ men inte åäö'
-    }
-
     var bannedCharacters = ['å','ä','ö']
-
     if (bannedCharacters.some(x=> email.value.includes(x))) {
+        emailError.textContent='får inte innehålla å, ä eller ö'
         return false;
     }
-    
 
-
+    return true
 }
+
+
+
 
 
 
