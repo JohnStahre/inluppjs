@@ -1,10 +1,10 @@
-const form = document.querySelector('#form');
+const form = document.getElementById('form');
 const firstName = document.getElementById('firstName');
-const lastName = document.querySelector('#lastName');
-const email = document.querySelector('#email');
-const imputs = document.querySelector('#input');
-const btn = document.querySelector('#btn');
-const output = document.querySelector('#output');
+const lastName = document.getElementById('lastName');
+const email = document.getElementById('email');
+const imputs = document.getElementById('input');
+const btn = document.getElementById('btn');
+const output = document.getElementById('output');
 
 // skapar arrayen /listan
 const users = []
