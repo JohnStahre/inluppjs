@@ -9,27 +9,8 @@ const output = document.getElementById('output');
 // skapar arrayen /listan
 const users = []
 
-// här tänker jag att sjävla valideringen är
 
 
-// const validate = (id) => {
-//     const input = document.querySelector(id + 'error');
-    
-//     if(input.value.trim() ==='') {
-//         error.innerText = 'please enter'
-//         input.focus();
-//         return false;
-//     } 
-//     else if(input.value.length < 2) {
-//         error.innerText = 'please enter'
-//         input.focus();
-//         return false;
-//     }
-//     else {
-//         error.innerText = ''
-//         return true;
-//     }
-// }
 
 const validatefirstName = () => {
     const firstName = document.getElementById('firstName');
@@ -54,32 +35,33 @@ const validateemail = () => {
     const emailError = document.getElementById('email-error');
 
     if(email.value.length<2) {
-        emailError.textContent = 'ange giltig email mer än 2 bokstäver inkulsive @'
+        emailError.textContent = ('ange giltig email mer än 2 bokstäver inkulsive @')
+        return false;
+    }
+    else if (email.value.includes('ö'&&'ä'&&'å')) {  
+        emailError.textContent = ('inte åäö')
+        return false;
+        
     }
     else if (email.value.includes('@')){
         return true;
     }
+   
     else{
-        emailError.textContent='måste innehålla @'
+        emailError.textContent='måste innehålla @ men inte åäö'
     }
+
+    var bannedCharacters = ['å','ä','ö']
+
+    if (bannedCharacters.some(x=> email.value.includes(x))) {
+        return false;
+    }
+    
+
+
 }
 
-// regex nedan är från lektion 
 
-//const validateEmail = (input) => {
-//     let regEx = /^\w+@[a-zA-Z]+?\.[a-zA-Z-]{2,}$/
-  
-//     if(input.value.trim() === '') {
-//       setError(input, 'Email address cannot be empty')
-//       return false;
-//     } else if (!regEx.test(input.value)) {
-//       setError(input, 'Email address is not valid')
-//       return false;
-//     } else {
-//       setSuccess(input)
-//       return true;
-//     }
-//   }
 
 
 form.addEventListener('submit', (e) => {
@@ -96,6 +78,7 @@ class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        // nedan genererar id i datum och tid
         this.id = Date.now().toString()
         this.listener = false;
 
@@ -154,75 +137,3 @@ if(firstName.value !=='' && lastName.value !=='' && email.value !=='' ){
         }
 
 })
-
-
-
-// const createUser = (firstName, lastName, email) => {
-//     const user = new User(firstName, lastName, email);
-
-//     // för att pusha in användaren i listan
-//     users.push(user);
-//     output.insertAdjacentHTML('beforeend', newUser(user))
-//     console.log(user);
-
-//     // skicka ut den och innan eller efter
-
-//     // const u = document.querySelectorAll()
-// })
-
-// }
-// // skapar en funktion för en ny user och lägger till nytt ID
-
-// const newUser  = new(user) => {
-//     let template = `
-//     <div class="user animate" id="${user.id}">
-//             <div class="text">
-//               <h4>${user.firstName} ${user.lastName}</h4>
-//               <small>${user.email}</small>
-//             </div>
-//           </div>
-//     `
-//     return template 
-
-// }
-
-
-
-
-// // })
-
-
-
-
-
-
-// const email = document.querySelector('#email');
-// const imputs = document.querySelector('#input')
-
-// regUser.addEventListener('submit', (e) => {
-//     e.preventDefault();
-
-//     if(firstName.value !=='' && lastName.value !=='' && email.value !=='' ){
-//         createUser(firstName.value, lastName.value, email.value, id.value);
-//     }
-
-
-
-//     if
-
-//     let firstName = e.currentTarget[0].value;
-//     let lastName = e.currentTarget.lastName.value;
-//     let email = e.currentTarget['email'].value;
-
-//     console.log(firstName, lastName, email);
-
-//     let user = {
-//         firstName: e.target.firstName.value,
-//         lastName: document.querySelector('#lastName').value,
-//         email: e.currentTarget.email.value,
-       
-//     }
-
-//     console.log(user)
-
-// })
