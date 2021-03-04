@@ -53,25 +53,33 @@ const validateemail = () => {
     const email = document.getElementById('email');
     const emailError = document.getElementById('email-error');
 
-    if(email.value=== ''|| email.value.length<2) {
+    if(email.value.length<2) {
         emailError.textContent = 'ange giltig email mer än 2 bokstäver inkulsive @'
+    }
+    else if (email.value.includes('@')){
+        return true;
+    }
+    else{
+        emailError.textContent='måste innehålla @'
     }
 }
 
-const validateEmail = (input) => {
-    let regEx = /^\w+@[a-zA-Z]+?\.[a-zA-Z-]{2,}$/
+// regex nedan är från lektion 
+
+//const validateEmail = (input) => {
+//     let regEx = /^\w+@[a-zA-Z]+?\.[a-zA-Z-]{2,}$/
   
-    if(input.value.trim() === '') {
-      setError(input, 'Email address cannot be empty')
-      return false;
-    } else if (!regEx.test(input.value)) {
-      setError(input, 'Email address is not valid')
-      return false;
-    } else {
-      setSuccess(input)
-      return true;
-    }
-  }
+//     if(input.value.trim() === '') {
+//       setError(input, 'Email address cannot be empty')
+//       return false;
+//     } else if (!regEx.test(input.value)) {
+//       setError(input, 'Email address is not valid')
+//       return false;
+//     } else {
+//       setSuccess(input)
+//       return true;
+//     }
+//   }
 
 
 form.addEventListener('submit', (e) => {
