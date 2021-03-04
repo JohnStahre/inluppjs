@@ -9,54 +9,31 @@ const output = document.getElementById('output');
 // skapar arrayen /listan
 const users = []
 
-
-
-
 const validatefirstName = () => {
     const firstName = document.getElementById('firstName');
     const firstNameError = document.getElementById('firstName-error');
 
-    if(firstName.value=== ''|| firstName.value.length<2) {
+    if(firstName.value.length<2) {
         firstNameError.textContent = 'du måste ange ett förnamn'
+        return false
     }
+    
+    firstNameError.textContent = ''
+    return true
 }
 
 const validatelastName = () => {
     const lastName = document.getElementById('lastName');
     const lastNameError = document.getElementById('lastName-error');
 
-    if(lastName.value.trim()=== ''|| lastName.value.length<2) {
+    if(lastName.value.length<2) {
         lastNameError.textContent = 'du måste ange ett efternamn'
+        return false
     }
+
+    lastNameError.textContent = '';
+    return true
 }
-
-// const validateemail = () => {
-//     const email = document.getElementById('email');
-//     const emailError = document.getElementById('email-error');
-
-//     if(email.value.length<2) {
-//         emailError.textContent = ('ange giltig email mer än 2 bokstäver inkulsive @')
-//         return false;
-//     }
-//     // else if (email.value.includes('ö'&&'ä'&&'å')) {  
-//     //     emailError.textContent = ('inte åäö')
-//     //     return false;
-        
-//     // }
-//     else if (email.value.includes('@')){
-//         return true;
-//     }
-   
-//     else{
-//         emailError.textContent='måste innehålla @ men inte åäö'
-//     }
-
-//     var bannedCharacters = ['å','ä','ö']
-
-//     if (bannedCharacters.some(x=> email.value.includes(x))) {
-//         emailError.textContent = ('inte åäö')
-//         // return false;
-//     }
     
 const validateemail = () => {
     const email = document.getElementById('email');
@@ -77,22 +54,24 @@ const validateemail = () => {
         return false;
     }
 
+    emailError.textContent = '';
     return true
 }
 
+const validate = () => {
+    var firstNameValid = validatefirstName();
+    var lastNameValid = validatelastName();
+    var emailValid = validateemail();
 
-
-
-
-
+    return firstNameValid && lastNameValid && emailValid;
+}
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    validatefirstName();
-    validatelastName();
-    validateemail();
-  
+    if(validate()) {
+        createUser(firstName.value, lastName.value, email.value)
+    }
 })
 
 class User {
@@ -108,6 +87,7 @@ class User {
 }
 
 const createUser = (firstName, lastName, email) => {
+    console.log('new user')
     const user = new User(firstName, lastName, email);
 
     // pushar in user i listan /arrayen
@@ -148,14 +128,3 @@ const newUser = (user) => {
     `
     return template
 }
-
-
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
-if(firstName.value !=='' && lastName.value !=='' && email.value !=='' ){
-             createUser(firstName.value, lastName.value, email.value);
-
-        }
-
-})
